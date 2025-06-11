@@ -18,11 +18,11 @@ bool loadCardList()
         Card card;
         memset(&card, 0, sizeof(Card));
         //这样是为了防止出现乱码，初始化
-        while (fscanf(tmp, "%18s %8s %d %ld %ld %lf %ld %d %lf %d",
+        while (fscanf(tmp, "%18s %8s %d %ld %ld %lf %ld %d %lf %d %lf %lf %lf",
             card.aName, card.aPwd,
             &card.nStatus, &card.tStart, &card.tEnd,
             &card.fTotalUse, &card.tLast, &card.nUseCount,
-            &card.fBalance, &card.nDel) == 10)
+            &card.fBalance, &card.nDel,&card.fstart,&card.fCharge,&card.fRefund) == 13)
         {
             addCardlist(card);
         }
@@ -47,11 +47,11 @@ void SaveCardList()
 	while (cur != NULL)
 	{
 		// 字符串左对齐，数字右对齐，浮点数保留两位小数
-		fprintf(tmp, "%-18s %-8s %3d %12ld %12ld %10.2lf %12ld %8d %10.2lf %3d\n",
+		fprintf(tmp, "%-18s %-8s %3d %12ld %12ld %10.2lf %12ld %8d %10.2lf %3d %10.2lf %10.2lf %10.2lf\n",
 			cur->card.aName, cur->card.aPwd,
 			cur->card.nStatus, cur->card.tStart, cur->card.tEnd,
 			cur->card.fTotalUse, cur->card.tLast, cur->card.nUseCount,
-			cur->card.fBalance, cur->card.nDel);
+			cur->card.fBalance, cur->card.nDel,cur->card.fstart,cur->card.fCharge,cur->card.fRefund);
 		cur = cur->next;
 	}
 	fclose(tmp);

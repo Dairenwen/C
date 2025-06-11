@@ -22,6 +22,11 @@ enum Status
 	Invalid//失效
 };
 
+enum CountStatus
+{
+	clear,//未结算
+	unclear//已结算
+};
 enum Del
 {
 	UnDel,//未删除

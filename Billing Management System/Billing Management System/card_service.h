@@ -22,6 +22,8 @@ bool _queryCardName(const char* aName);//模糊查询卡
 
 bool _queryCardNamelist(const char* aName);//模糊查询卡
 
+const char* tostringStatus(int n);//将状态转换为字符串
+
 void printallcard(const char* aName);//打印所有可能卡号
 
 void printallcardlist(const char* aName);//打印所有可能卡号
@@ -48,11 +50,15 @@ bool refundCardList(const char* aName);//退款
 
 bool judgecancelstatus(CardNode* cur);//判断卡的状态
 
-int inputTimeRange(time_t* start, time_t* end);
+int isLeapYear(int year);//判断是否是闰年
 
-void print_open_detail_and_summary(time_t start, time_t end);
+int getDaysInMonth(int year, int month);//获取某月的天数
 
-void print_consume_detail_and_summary(time_t start, time_t end);
+int inputTimeRange(time_t* start, time_t* end);//输入时间范围
 
-void print_recharge_refund_detail_and_summary(time_t start, time_t end);
+void print_open_detail_and_summary(time_t start, time_t end);// 打印开卡明细和汇总
+
+void print_consume_detail_and_summary(time_t start, time_t end);// 打印消费明细和汇总
+
+void print_recharge_refund_detail_and_summary(time_t start, time_t end);// 打印充值和退款明细和汇总
 

@@ -11,14 +11,16 @@
 #include"menu.h"
 #include"card_file.h"
 #include"card_service.h"
+#include"billing_file.h"
+#include"billing_service.h"
 
 int main()
 {
 	int nSelection = 0;
 	printf("\n欢迎进入计费管理系统\n");
-	printf(RED"\n在完成操作后请退出保存数据，非正常退出会造成数据丢失！\n"NONE);
 	bool init = initCardList();
-	if (init == false)
+	bool initbill = initBillingList();
+	if (init == false||initbill==false)
 	{
 		printf(RED"初始化失败！\n"NONE);
 		return 0;
@@ -36,47 +38,58 @@ int main()
 			case Quit:
 				SaveCardList();
 				releaseCardList();
+				releaseBillingList();
 				printf("\n退出\n");
 				break;
 
 			case Add:
 				printf("\n添加卡\n");
 				addlist();
+				SaveCardList();
 				break;
 
 			case Searchcard:
 				printf("\n查询卡\n");
 				querylist();
+				SaveCardList();
 				break;
 
 			case Logon:
 				printf("\n上机\n");
 				logon();
+				SaveCardList();
+				SaveBillingList();
 				break; 
 
 			case Logoff:
 				printf("\n下机\n");
 				logoff();
+				SaveCardList();
+				SaveBillingList();
 				break;
 
 			case Recharge:
 				printf("\n充值\n");
 				recharge();
+				SaveCardList();
 				break;
 
 			case Refund:
 				printf("\n退费\n");
 				refund();
+				SaveCardList();
 				break;
 
 			case Searchcount:
 				printf("\n查询统计\n");
 				count();
+				SaveCardList();
 				break;
 
 			case Cancel:
 				printf("\n注销卡\n");
 				cancel();
+				SaveCardList();
 				break;
 
 			default:

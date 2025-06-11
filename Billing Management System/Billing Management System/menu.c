@@ -142,6 +142,9 @@ void addlist()//添加卡
 		}
 	} while (money < 0);
 	card.fBalance = money;
+	card.fstart = money; //设置开卡金额
+	card.fCharge = money; //设置开卡金额为充值金额
+	card.fRefund = 0; //设置退费金额为0
 
 	//设置累计金额：
 	card.fTotalUse = 0;
@@ -366,8 +369,8 @@ void querylist()//查询卡
 
 			printf("\n----查询到的卡的信息如下：----\n");
 			printf("卡号\t\t\t密码\t\t卡状态\t余额\t累计金额\t使用次数\t上次使用时间\n");
-			printf("%-18s\t%-8s\t%d\t%0.1f\t%0.1f\t\t%d\t\t%s\n", pCard->aName, pCard->aPwd,
-				pCard->nStatus, pCard->fBalance,
+			printf("%-18s\t%-8s\t%s\t%0.1f\t%0.1f\t\t%d\t\t%s\n", pCard->aName, pCard->aPwd,
+				tostringStatus(pCard->nStatus), pCard->fBalance,
 				pCard->fTotalUse, pCard->nUseCount,
 				aTime);
 		}
